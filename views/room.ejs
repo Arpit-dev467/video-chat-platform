@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>videoChatApp</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <script src="https://unpkg.com/peerjs@0.3.20/dist/peer.min.js"></script>
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="header">
+        <div class="header__brand">
+          <div class="header__back">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <div>
+            <p class="eyebrow">Live meeting</p>
+            <h3>Video Chat</h3>
+          </div>
+        </div>
+        <div class="header__meta">
+          <div class="meta-pill">
+            <i class="fas fa-video"></i>
+            <span>Room <%= roomId.slice(0, 8) %></span>
+          </div>
+          <div class="meta-pill">
+            <i class="fas fa-users"></i>
+            <span id="participantCount">1 participant</span>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="main__left">
+          <section class="stage">
+            <div class="stage__intro">
+              <div>
+                <p class="eyebrow">Now in session</p>
+                <h1>Creative sync and live catch-up</h1>
+              </div>
+              <div class="stage__badge">
+                <span class="stage__dot"></span>
+                <span>Recording off</span>
+              </div>
+            </div>
+            <div class="videos__group">
+              <div id="video-grid"></div>
+            </div>
+          </section>
+          <div class="options">
+            <div class="options__left">
+              <button id="stopVideo" class="options__button" type="button" aria-label="Toggle camera">
+                <i class="fa fa-video-camera"></i>
+                <span>Camera</span>
+              </button>
+              <button id="muteButton" class="options__button" type="button" aria-label="Toggle microphone">
+                <i class="fa fa-microphone"></i>
+                <span>Mute</span>
+              </button>
+              <button id="showChat" class="options__button options__button--ghost" type="button" aria-label="Open chat">
+                <i class="fa fa-comment"></i>
+                <span>Chat</span>
+              </button>
+            </div>
+            <div class="options__right">
+              <button id="inviteButton" class="options__button options__button--light" type="button" aria-label="Invite people">
+                <i class="fas fa-user-plus"></i>
+                <span>Invite</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <aside class="main__right">
+          <div class="sidebar__header">
+            <div>
+              <p class="eyebrow">Team chat</p>
+              <h2>Conversation</h2>
+            </div>
+            <div class="sidebar__count">Live</div>
+          </div>
+          <div class="main__chat_window">
+            <div class="messages"></div>
+          </div>
+          <div class="main__message_container">
+            <input id="chat_message" type="text" autocomplete="off" placeholder="Send a message to everyone" />
+            <button id="send" class="options__button options__button--send" type="button" aria-label="Send message">
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
